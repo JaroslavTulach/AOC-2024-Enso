@@ -1,0 +1,5 @@
+name: Dec02
+namespace: local
+version: 0.0.1
+edition: 0.0.0-dev
+prefer-local-libraries: 'true'
