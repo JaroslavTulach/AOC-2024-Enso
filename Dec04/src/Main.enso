@@ -26,24 +26,46 @@ scan i rows =
     diag_minus = walk 0 i 1 -1 rows
     " " + horizontal_plus + " " + vertical_plus + " " + diag_plus + " " + diag_minus + " "
 
+xmas sx sy rows =
+    max = rows.length.max (rows.at 0 . length)
+
+    at x y = 
+        if x<0 || y<0 || x>= max || y>= max then " " else
+            rows.at y . at x
+
+    check_mas dx dy =
+        lu = at sx-dx sy-dy
+        ld = at sx-dx sy+dy
+        ru = at sx+dx sy-dy
+        rd = at sx+dx sy+dy
+
+        if lu == "M" && ld == "M" && ru == "S" && rd == "S" then True else
+            if lu == "S" && ld == "S" && ru == "M" && rd == "M" then True else
+                if lu == "M" && ru == "M" && ld == "S" && rd == "S" then True else
+                    if lu == "S" && ru == "S" && ld == "M" && rd == "M" then True else
+                        False
+
+    at sx sy == "A" && check_mas 1 1
+
 main =
     any1 = Enso_Project.enso_project.data/"input.txt"
     any2 = any1.read_text
     any3 = any2.split ['\n', '\r\n', '\r']
     text_rows = any3.filter ..Not_Empty
     node1 = text_rows.map .length
-    any7 = node1.compute ..Maximum
-    up = any7*2
+    max = node1.compute ..Maximum
 
-    sum1 = (-up).up_to up . map (i-> scan i text_rows)
-    half_text = sum1.fold "" (a-> v-> a+" "+v)
-    whole_text = half_text + " " + half_text.reverse
-    xmas = whole_text.find_all "XMAS"
-    integer1 = xmas.length
-    integer1
+    matrix = 0.up_to max . map y->
+        0.up_to max . map x->
+            xmas x y text_rows
+
+    vector1 = matrix.flatten
+    vector2 = vector1.filter x->x
+    integer3 = vector2.length
+    integer3
 
 
 
 #### METADATA ####
-[[{"index":{"value":312},"size":{"value":4}},"bb1f752d-053a-4e89-9460-56569320e2fc"],[{"index":{"value":329},"size":{"value":36}},"e0f3b0b6-446f-4350-811a-b2c40695064f"],[{"index":{"value":390},"size":{"value":3}},"13dee4e6-4c12-4580-bd52-c440a6869b3f"],[{"index":{"value":899},"size":{"value":25}},"e90d6be4-309b-4ad6-818d-2e90befd3cb8"],[{"index":{"value":899},"size":{"value":42}},"33a1d6dd-81ac-4f87-90fe-99b3717afebe"],[{"index":{"value":953},"size":{"value":14}},"8796109a-703b-49a6-9015-4051fa148e6c"],[{"index":{"value":979},"size":{"value":10}},"2f265afc-0582-41d0-b200-a612b0fb77ac"],[{"index":{"value":979},"size":{"value":31}},"7285f97e-fb55-4f06-aacc-6fbb3f22dace"],[{"index":{"value":1027},"size":{"value":11}},"e2597f68-fc82-4946-9032-ffdd38ef428b"],[{"index":{"value":1027},"size":{"value":23}},"32a25a83-2625-44fa-8d9f-171c23842b4f"],[{"index":{"value":1063},"size":{"value":21}},"5acac6b4-af5a-418b-a23d-3b9c793e6c54"],[{"index":{"value":1096},"size":{"value":13}},"31bd93b9-38e7-4c65-8c06-c5bf7db783d5"],[{"index":{"value":1096},"size":{"value":23}},"57006cc9-de9a-47cf-a3e6-1b5d4aa54e28"],[{"index":{"value":1129},"size":{"value":6}},"68d9b57f-daa3-4b5f-81af-f95ca601b78b"],[{"index":{"value":1148},"size":{"value":43}},"dd2a02c7-28e9-42df-83d2-0e6e20c06c2d"],[{"index":{"value":1208},"size":{"value":30}},"40cf8784-125b-497c-ae22-abe3b849cf64"],[{"index":{"value":1256},"size":{"value":35}},"9b644097-de88-47eb-9bcc-5b4ea3e66c36"],[{"index":{"value":1303},"size":{"value":19}},"a0d97607-7e0d-4726-9baa-cf73c222aec9"],[{"index":{"value":1303},"size":{"value":26}},"6a3a847a-b4a6-46aa-8fe1-0aa0f7766a81"],[{"index":{"value":1345},"size":{"value":11}},"7db6114c-fdd2-4eba-8e27-1b667b55dcf3"]]
-{"ide":{"node":{"bb1f752d-053a-4e89-9460-56569320e2fc":{"position":{"vector":[165,88]}},"e0f3b0b6-446f-4350-811a-b2c40695064f":{"position":{"vector":[-16,16]}},"13dee4e6-4c12-4580-bd52-c440a6869b3f":{"position":{"vector":[275,88]}},"33a1d6dd-81ac-4f87-90fe-99b3717afebe":{"position":{"vector":[-946,214]}},"e90d6be4-309b-4ad6-818d-2e90befd3cb8":{"position":{"vector":[-560,449]}},"8796109a-703b-49a6-9015-4051fa148e6c":{"position":{"vector":[-888,124]},"visualization":{"show":false,"width":290.125,"height":346}},"7285f97e-fb55-4f06-aacc-6fbb3f22dace":{"position":{"vector":[-869,75]},"visualization":{"show":false,"width":600.9375,"height":379}},"2f265afc-0582-41d0-b200-a612b0fb77ac":{"position":{"vector":[-462,253]}},"32a25a83-2625-44fa-8d9f-171c23842b4f":{"position":{"vector":[-869,16]},"visualization":{"show":false,"width":309.859375,"height":334}},"e2597f68-fc82-4946-9032-ffdd38ef428b":{"position":{"vector":[-86,310]}},"5acac6b4-af5a-418b-a23d-3b9c793e6c54":{"position":{"vector":[-724,-56]}},"57006cc9-de9a-47cf-a3e6-1b5d4aa54e28":{"position":{"vector":[-724,-128]}},"31bd93b9-38e7-4c65-8c06-c5bf7db783d5":{"position":{"vector":[-354,99]}},"68d9b57f-daa3-4b5f-81af-f95ca601b78b":{"position":{"vector":[-355,-26]}},"dd2a02c7-28e9-42df-83d2-0e6e20c06c2d":{"position":{"vector":[-420,-98]}},"40cf8784-125b-497c-ae22-abe3b849cf64":{"position":{"vector":[-420,-170]},"visualization":{"show":false,"width":543.78125,"height":488}},"9b644097-de88-47eb-9bcc-5b4ea3e66c36":{"position":{"vector":[-472,-242]},"visualization":{"show":false,"width":543.78125,"height":488}},"6a3a847a-b4a6-46aa-8fe1-0aa0f7766a81":{"position":{"vector":[-472,-314]}},"a0d97607-7e0d-4726-9baa-cf73c222aec9":{"position":{"vector":[-921,-1351]}},"7db6114c-fdd2-4eba-8e27-1b667b55dcf3":{"position":{"vector":[-208,-386]}},"4e69c630-a222-4144-95b6-536aa22eea8d":{"position":{"vector":[-206,-432]},"visualization":{"show":true}}},"widget":{},"snapshot":"eJx9k11v0zAUhu/zK17lph2hph0XuyEVAyauhpA6ARJD0VnitGaOHTlOm0z78ch20rUdm2+SnPOc93z4pDS6wsqSKsgU7BM1HKKqtbEgKaPyyHtDd/IV9xeydPeqwOXP1cvOr1qvJc8ua/Eys1J6V0q6P8oxvO6hq46qWvLmmeOHaFqS4oGs0OpE2XXOrrmlUflKNTr7bvRfntso2pG8R9Oh6VF0KHoYvWuQRgBQUYfUG5jkam03zFmm3kAWczAE+1nkea/VoYfhFQkl1BqU54OYO6I8cKUp5rAbrjzEZcP3nDv5BqkL6D7M8fiIPjy6ZepqcIZl6gv0CjHi5wrujLX2YCCL7gj4eENCZp9JyqH0pOjQJ8VBA7OFqy7JN6HD04gwOFdGHEdRk5OCOJzgRhvxoJUlmdWybZCGsDkEFph70nNbbqzITyiBOeZYPFGFoPV/dE6JSqhTZHbAuFklzypLBvtxJaP1KfORJWTypihyExvaJtUvkB5tGuPuox4+CrL0Lhaqbi2znY3HqHOkPpgZTkVmeWdHz/vgOWdNLYXF78mtmrzF5NaMz8kfj7qYLNyAD2OlkJYbMPZN2+yqqm3vOaUL7mrc86yiGsOej0kvkAaQ5bqqW8vB2DV1omorj7R1yHLx5jzsR9NWTnQ6a+sz1taZ1Y5hcNpTMVtiWJF91rOwJiRL3y1SL8FKLQvEMaY0W2I7W4KSGHGyDfhuoyUf+afY8Wr2Fmb4lpvhr+gq8kuxj2WlUEXmVjn+dX25CncglOVrblwTLuBwHqMr+gdKmqs9"}}
+[[{"index":{"value":312},"size":{"value":4}},"bb1f752d-053a-4e89-9460-56569320e2fc"],[{"index":{"value":329},"size":{"value":36}},"e0f3b0b6-446f-4350-811a-b2c40695064f"],[{"index":{"value":390},"size":{"value":3}},"13dee4e6-4c12-4580-bd52-c440a6869b3f"],[{"index":{"value":1595},"size":{"value":25}},"e90d6be4-309b-4ad6-818d-2e90befd3cb8"],[{"index":{"value":1595},"size":{"value":42}},"33a1d6dd-81ac-4f87-90fe-99b3717afebe"],[{"index":{"value":1649},"size":{"value":14}},"8796109a-703b-49a6-9015-4051fa148e6c"],[{"index":{"value":1675},"size":{"value":10}},"2f265afc-0582-41d0-b200-a612b0fb77ac"],[{"index":{"value":1675},"size":{"value":31}},"7285f97e-fb55-4f06-aacc-6fbb3f22dace"],[{"index":{"value":1723},"size":{"value":11}},"e2597f68-fc82-4946-9032-ffdd38ef428b"],[{"index":{"value":1723},"size":{"value":23}},"32a25a83-2625-44fa-8d9f-171c23842b4f"],[{"index":{"value":1759},"size":{"value":21}},"5acac6b4-af5a-418b-a23d-3b9c793e6c54"],[{"index":{"value":1791},"size":{"value":13}},"31bd93b9-38e7-4c65-8c06-c5bf7db783d5"],[{"index":{"value":1791},"size":{"value":23}},"57006cc9-de9a-47cf-a3e6-1b5d4aa54e28"],[{"index":{"value":1829},"size":{"value":82}},"dd2a02c7-28e9-42df-83d2-0e6e20c06c2d"],[{"index":{"value":1927},"size":{"value":14}},"53254b65-d956-4838-ad37-190a9523f492"],[{"index":{"value":1956},"size":{"value":19}},"36f4313b-9733-40ba-924c-a2834848446d"],[{"index":{"value":1991},"size":{"value":14}},"fbc6a446-c9e5-4a86-9a86-9c7d8a2853b0"],[{"index":{"value":2010},"size":{"value":8}},"87fc826d-8c0c-43ee-96c5-c8d1fa12a396"]]
+{"ide":{"node":{"bb1f752d-053a-4e89-9460-56569320e2fc":{"position":{"vector":[165,88]}},"e0f3b0b6-446f-4350-811a-b2c40695064f":{"position":{"vector":[-16,16]}},"13dee4e6-4c12-4580-bd52-c440a6869b3f":{"position":{"vector":[275,88]}},"33a1d6dd-81ac-4f87-90fe-99b3717afebe":{"position":{"vector":[-946,214]}},"e90d6be4-309b-4ad6-818d-2e90befd3cb8":{"position":{"vector":[-560,449]}},"8796109a-703b-49a6-9015-4051fa148e6c":{"position":{"vector":[-888,124]},"visualization":{"show":false,"width":290.125,"height":346}},"7285f97e-fb55-4f06-aacc-6fbb3f22dace":{"position":{"vector":[-869,75]},"visualization":{"show":false,"width":600.9375,"height":379}},"2f265afc-0582-41d0-b200-a612b0fb77ac":{"position":{"vector":[-462,253]}},"32a25a83-2625-44fa-8d9f-171c23842b4f":{"position":{"vector":[-869,16]},"visualization":{"show":false,"width":309.859375,"height":334}},"e2597f68-fc82-4946-9032-ffdd38ef428b":{"position":{"vector":[-86,310]}},"5acac6b4-af5a-418b-a23d-3b9c793e6c54":{"position":{"vector":[-724,-56]}},"57006cc9-de9a-47cf-a3e6-1b5d4aa54e28":{"position":{"vector":[-724,-128]}},"31bd93b9-38e7-4c65-8c06-c5bf7db783d5":{"position":{"vector":[-354,99]}},"dd2a02c7-28e9-42df-83d2-0e6e20c06c2d":{"position":{"vector":[-420,-98]},"visualization":{"show":true,"width":870.453125,"height":353}},"53254b65-d956-4838-ad37-190a9523f492":{"position":{"vector":[-420,-523]},"visualization":{"show":false,"width":246,"height":146}},"36f4313b-9733-40ba-924c-a2834848446d":{"position":{"vector":[-420,-598]}},"fbc6a446-c9e5-4a86-9a86-9c7d8a2853b0":{"position":{"vector":[-420,-670]}},"87fc826d-8c0c-43ee-96c5-c8d1fa12a396":{"position":{"vector":[-302,-742]},"visualization":{"show":true}}},"widget":{},"snapshot":"eJylVNFu0zAUfc9XXOVhBZWadHslFQMGT0VIneCBoegudlszx44chznTPh7ZTtKk6SYm/JL4nnOPz7WvvdWqgI1BSVFT8gErBrwolTaAQkTbEXqNt+IZ+BMavH1W4PLH5mnwi1I7wbLLkj/N2Uh1vxV4N1qj/e1JVxaLUrBqAnznVY2CP6DhSh4pu8rJmhnslK9kpbJvWv1muYmiexR3UFmoGqAWaANa3VeQRgAABVpIfYAIJndmT1zklQ+ggQQIhPjryPO9loUGNCuQSy53gHneirnBtwMoTSEBs2fSk5ioWM9zI99D6hLsuwQeH6EJH7tKnQcXWKXeoFeIIZ4quNF5bYAAGrAjwvtr5CL7iEK01ufUQjOngwIWS+dunu9DhccZYeOcjTiOoipHCXy4g3ul+YOSBkVWirqCNKQlwGEJiWd63h+mDc+PWBwSSGB5YFGOuxM6x4yCy2PKYsBxezWfOJu38bGTLnpYeRQJK/lQFNkCq3ZD/qOH3CFBAykMm2bSA/DPTTBpgCg0F8vvMmc4NP2hRUUNqSNWdkFdLQvaHDA6xuYDTPd580mepmPM5Q3Lc2umEK9jODvzi/QTHZBNmNBu4su91jWb1nuQ2wzlNkO59VBu/azcKYf6hN0XOHzKqT5h+4VOu/EZHdr1U+hJp3Dp5Q6Hv4RlFLmb3jYAymYJ6eiFJMxNynZC0eDbmMuyNsRYE3dZ5+6AZbMkmiHNDLOmQy4Cck6qUnADP2c3cvYGZje6+85+earLycK98Wlky4VhGgj5qkx2VZQm9JNUlDmPPZ8UWEJ7twY3zvNIroqyNgwIWaPlRV1ELcVo7lgJqcvMKJ9DwCk1i1W/rVPUDlA3/J1397W3E7XvWW6Udj7DUmQr0BgmB6DbspbW1WoXq/BAc2nYjumLnnI+LLBDo79cFUfB"}}
