@@ -30,7 +30,7 @@ type Page_Comparator
                 if p2_first then Ordering.Less else
                     Error.throw "Cannot compare "+p1.to_text+" and "+p2.to_text
 
-            IO.println "Comparing "+p1.to_text+" to "+p2.to_text+" yields:"+r.to_text
+            # IO.println "Comparing "+p1.to_text+" to "+p2.to_text+" yields:"+r.to_text
             r
 
     hash p:Page = p.index

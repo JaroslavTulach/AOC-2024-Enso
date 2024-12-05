@@ -20,7 +20,7 @@ main =
     any6 = table3.set (expr '[Column 1]*[Count]') "Mul"
     node1 = any6.at "Mul"
     any4 = node1.compute ..Sum
-
+    any4
 
 
 #### METADATA ####
