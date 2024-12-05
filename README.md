@@ -6,14 +6,22 @@ Solving tasks for [AoC 2024](https://adventofcode.com/2024) in [Enso](http://ens
 
 ## Setup & Execution
 
-Enso can run on Linux, Windows, MacOSX. Download correct `enso-launcher` package
-for your operating system. Use version [2024.4.2](https://github.com/enso-org/enso/releases/tag/2024.4.2).
-The following steps are tested on Linux:
+First of all get this repository to your local computer. Use `git` to clone it:
 ```bash
 $ git checkout https://github.com/JaroslavTulach/AOC-2024-Enso.git
 $ cd AOC-2024-Enso
+$ ls -1
+Dec01
+Dec02
+Dec03
+Dec04
+Dec05
+README.md
 ```
-the two commands give you this repository with Enso projects in DecXY folders. Then install Enso:
+Let's download [Enso](http://enso.org) now. 
+Enso can run on Linux, Windows, MacOSX. Download correct `enso-launcher` package
+for your operating system. Use version [2024.4.2](https://github.com/enso-org/enso/releases/tag/2024.4.2).
+The following steps are tested on Linux, but shall work on Mac too. They may need some modification on Windows:
 ```bash
 $ wget https://github.com/enso-org/enso/releases/download/2024.4.2/enso-launcher-2024.4.2-linux-amd64.tar.gz
 $ tar fxvz enso-launcher-2024.4.2-linux-amd64.tar.gz
