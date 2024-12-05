@@ -25,7 +25,7 @@ jobs:
         run: tar fxvz enso-launcher-2024.4.2-linux-amd64.tar.gz
 
       - name: Install Enso
-        run: ./enso/bin/ensoup install engine 2024.4.2 
+        run: ./enso/bin/ensoup install engine 2024.4.2 --hide-progress
         
       - name: List Enso compoonents
         run: ./enso/bin/ensoup list
