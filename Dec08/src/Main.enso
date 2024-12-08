@@ -1,0 +1,28 @@
+from Standard.Base import all
+from Standard.Table import all
+from Standard.Database import all
+from Standard.AWS import all
+from Standard.Google_Api import all
+from Standard.Snowflake import all
+import Standard.Examples
+import Standard.Visualization
+from Standard.Base.Meta import Enso_Project
+
+main =
+    file1 = Data.read Examples.welcome
+    any1 = Enso_Project.enso_project.data/"input.txt"
+    any2 = Data.read any1
+    any3 = any2.split ['\n', '\r\n', '\r']
+    vector1 = any3.filter ..Not_Empty
+    node1 = vector1.map .characters
+    vector3 = node1.map_with_index (y-> r-> r.map_with_index (x-> v-> [v, x, y]))
+    vector2 = vector3.flatten
+    node2 = vector2.filter (t->t.first!='.')
+    any4 = node2.to_table
+    locations = any4.rename_columns [(Pair.Value '0' 'value'), (Pair.Value '1' 'x'), (Pair.Value '2' 'y')]
+
+
+
+#### METADATA ####
+[[{"index":{"value":314},"size":{"value":26}},"fcf199e6-d2b1-44b7-be92-a47545d6a593"],[{"index":{"value":352},"size":{"value":25}},"fa66aae3-08b0-4712-8e29-44a84d6ef59c"],[{"index":{"value":352},"size":{"value":42}},"c00140f6-fe23-4b85-b179-c1795a9784f6"],[{"index":{"value":406},"size":{"value":9}},"0b9aa8f6-33c5-400f-8500-f02ab8d4bf5a"],[{"index":{"value":406},"size":{"value":14}},"6ac011a0-6df9-43f2-ae02-c1be913223e4"],[{"index":{"value":432},"size":{"value":10}},"f476ccfe-f454-4295-9f14-97e42d47014a"],[{"index":{"value":432},"size":{"value":31}},"222dc8d8-6af0-47bd-adfa-4b9b55835fbc"],[{"index":{"value":478},"size":{"value":11}},"913127ef-85b1-456b-a7ee-52f63a51e0ad"],[{"index":{"value":478},"size":{"value":23}},"d13e6d2c-3573-4b0b-b351-bb6f7550fd0e"],[{"index":{"value":514},"size":{"value":23}},"6958b03e-df97-49b0-bd91-072eef5522cb"],[{"index":{"value":552},"size":{"value":20}},"052280e1-f351-4011-bda8-a2c61ce5def4"],[{"index":{"value":552},"size":{"value":67}},"ebaf5316-265b-47a6-92d2-194d8dcd3663"],[{"index":{"value":634},"size":{"value":15}},"ec41ca78-e90d-4b93-9002-b19315b97ff9"],[{"index":{"value":662},"size":{"value":32}},"2967df44-7e54-40a9-9f8e-7798be9d8247"],[{"index":{"value":706},"size":{"value":14}},"271da897-ef83-474b-bd4b-2b71b8c83365"],[{"index":{"value":737},"size":{"value":19}},"682caad0-13f5-47a1-bf8a-2fc691d30a5c"],[{"index":{"value":737},"size":{"value":90}},"390de944-4db4-4d38-8cd0-870a53b254f9"]]
+{"ide":{"node":{"fcf199e6-d2b1-44b7-be92-a47545d6a593":{"position":{"vector":[-388,282]},"visualization":{"show":true,"width":1027.671875,"height":193}},"c00140f6-fe23-4b85-b179-c1795a9784f6":{"position":{"vector":[-1275,258]}},"fa66aae3-08b0-4712-8e29-44a84d6ef59c":{"position":{"vector":[-1275,258]}},"6ac011a0-6df9-43f2-ae02-c1be913223e4":{"position":{"vector":[-1314,133]},"visualization":{"show":false,"width":349.5,"height":325}},"0b9aa8f6-33c5-400f-8500-f02ab8d4bf5a":{"position":{"vector":[-1314,133]}},"222dc8d8-6af0-47bd-adfa-4b9b55835fbc":{"position":{"vector":[-1252,42]},"visualization":{"show":false,"width":658.9375,"height":211}},"f476ccfe-f454-4295-9f14-97e42d47014a":{"position":{"vector":[-1252,42]}},"d13e6d2c-3573-4b0b-b351-bb6f7550fd0e":{"position":{"vector":[-1217,-30]},"visualization":{"show":false,"width":504,"height":293}},"913127ef-85b1-456b-a7ee-52f63a51e0ad":{"position":{"vector":[-1217,-30]}},"6958b03e-df97-49b0-bd91-072eef5522cb":{"position":{"vector":[-1134,-119]},"visualization":{"show":false,"width":973.4375,"height":335}},"ebaf5316-265b-47a6-92d2-194d8dcd3663":{"position":{"vector":[-1134,-191]}},"052280e1-f351-4011-bda8-a2c61ce5def4":{"position":{"vector":[-1082,-607]}},"ec41ca78-e90d-4b93-9002-b19315b97ff9":{"position":{"vector":[-1062,-281]},"visualization":{"show":false,"width":461,"height":348}},"2967df44-7e54-40a9-9f8e-7798be9d8247":{"position":{"vector":[-1062,-415]},"visualization":{"show":false,"width":599.21875,"height":263}},"271da897-ef83-474b-bd4b-2b71b8c83365":{"position":{"vector":[-1017,-487]},"visualization":{"show":false,"width":560,"height":309}},"390de944-4db4-4d38-8cd0-870a53b254f9":{"position":{"vector":[-1017,-559]},"visualization":{"show":false,"height":316}},"682caad0-13f5-47a1-bf8a-2fc691d30a5c":{"position":{"vector":[-1042,-786]}}},"widget":{},"snapshot":"eJx9kk1v2kAQhu/+FdNcFkswLSZXkFIV9ZQoElV6IMia2ONmk/2w1gPY/fXVOphAUXKwvOvn8Tsza1fBW1gJuZJCid+pYdC29kGAjEmqM/qLnswn+AcJPX0acPN79TH86f0fw/lNrT92Vs7vK0OvZzUOy6O0bMnWhpsL8KCbLRn9l0R7919ynBxvWWhIXrrG5/fBv3AhSWJJO5gnAACVNjyFOcRxMTCVMBTEPZvCW+41cl20TmOQ46Y+bEoS+nqlXb0VlFauhreys+wYM5AZzHsBm9pogbV6dGoM6jEMd7Xp1R0X4sP0zZ5hpY1wAMQ7L/nS1tL1lvNlP8fBRks1YPFMgQrh0Jwkxbq9HZ18r+U5167kFkbdZAEhXheknSxgN1nAejeGdgzdJk1PErNj3RlWhkTYHXt6Z9nQ+kgmC8FKh0a+zBWqdDiR60NnGYrPJf6ePTG+6L9x83YE1xjYkeW88GZrXQPr0T3pgA9ktgzqmwK1i0uVjuGMTBWo9uJppkB1Kt0k/wCT3BBr"}}
